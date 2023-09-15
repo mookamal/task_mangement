@@ -1,0 +1,19 @@
+:root {
+    --background-color: #dfebf0;
+    --primary-color: #305066;
+    --text-color: #2f2634;
+    --accent-color:#e8dcce;
+}
+body {
+    background-color: var(--background-color);
+}
+/* header */
+.log-btn {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+}
+.log-btn2 {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+}
+/* end header */

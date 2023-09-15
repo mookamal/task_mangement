@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Home page{% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'pages/css/home.css' %}">
+{% endblock css %}
+
+{% block content %}
+{% comment %} start here section {% endcomment %}
+<section class="hero">
+    <div class="container">
+        <div class="row text-center mt-5 mb-3">
+            <div class="col-md-6 col-ms-12 col-lg-6">
+                <h1>
+                    {{request.info.name}} : brings all your tasks, teammates, and tools together
+                </h1>
+                <p>
+                    {{request.info.desc}}
+                </p>
+            </div>
+            <div class="col-md-6 col-ms-12 col-lg-6">
+                <img src="{% static 'images/home/hero-1.svg' %}" width="300" alt="{{request.info.name}}">
+            </div>
+        </div> <!-- end row -->
+    </div> <!-- end container -->
+</section>
+{% comment %} end here section {% endcomment %}
+{% endblock content %}

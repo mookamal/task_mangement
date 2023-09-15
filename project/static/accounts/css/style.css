@@ -1,0 +1,11 @@
+
+.login-card {
+    background-color: var(--accent-color);
+    padding: 50px;
+}
+
+.login-card .btn-log {
+   background-color: var(--primary-color);
+   color: #fff;
+   font-weight: bold;
+}

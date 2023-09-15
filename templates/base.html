@@ -1,0 +1,44 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <title>{% block title %}{% endblock title %}</title>
+    {% block css %}{% endblock css %}
+  </head>
+  <body>
+
+    {% comment %} path login page {% endcomment %}
+    {% url 'login' as login_url %}
+    {% url 'password_reset' as reset_pass %}
+    {% url 'password_reset_done' as reset_pass_done %}
+    {% url 'signup' as signup_p %}
+
+
+
+    {% comment %} start header {% endcomment %}
+    
+    {% if request.path != login_url and  request.path !=  reset_pass and  request.path !=  reset_pass_done and  request.path !=  signup_p %}
+    {% include "parts/header.html" %}
+    {% endif %}
+    {% comment %} end header {% endcomment %}
+
+    {% comment %} start content {% endcomment %}
+    {% block content %}{% endblock content %}
+    {% comment %} end content {% endcomment %}
+
+    {% comment %} start footer {% endcomment %}
+    {% if request.path != login_url and  request.path !=  reset_pass and  request.path !=  reset_pass_done and  request.path !=  signup_p %}
+    {% include "parts/footer.html" %}
+    {% endif %}
+    {% comment %} end footer {% endcomment %}
+
+    {% comment %} js files {% endcomment %}
+    {% block js %}{% endblock js %}
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    
+  </body>
+</html>

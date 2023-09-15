@@ -1,0 +1,7 @@
+/* start hero section */
+.hero {
+    background-color: var(--primary-color);
+    padding: 50px;
+    color: #fff;
+}
+/* end hero section */
