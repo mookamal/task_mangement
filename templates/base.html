@@ -12,16 +12,14 @@
   <body>
 
     {% comment %} path login page {% endcomment %}
-    {% url 'login' as login_url %}
-    {% url 'password_reset' as reset_pass %}
-    {% url 'password_reset_done' as reset_pass_done %}
-    {% url 'signup' as signup_p %}
+    {% url 'home' as home_path %}
+
 
 
 
     {% comment %} start header {% endcomment %}
     
-    {% if request.path != login_url and  request.path !=  reset_pass and  request.path !=  reset_pass_done and  request.path !=  signup_p %}
+    {% if request.path == home_path %}
     {% include "parts/header.html" %}
     {% endif %}
     {% comment %} end header {% endcomment %}
@@ -31,7 +29,7 @@
     {% comment %} end content {% endcomment %}
 
     {% comment %} start footer {% endcomment %}
-    {% if request.path != login_url and  request.path !=  reset_pass and  request.path !=  reset_pass_done and  request.path !=  signup_p %}
+    {% if request.path == home_path %}
     {% include "parts/footer.html" %}
     {% endif %}
     {% comment %} end footer {% endcomment %}
