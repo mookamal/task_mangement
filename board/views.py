@@ -1,7 +1,7 @@
 from typing import Any
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render , redirect , get_object_or_404
-from .models import Board , BList
+from .models import Board , BList , Card
 from django.views.generic import ListView , DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import BoardForm 
@@ -49,5 +49,18 @@ def create_list(request):
                 board=board
             )
         
-        
         return redirect('board_detail', pk=board_id_value)
+
+def create_card(request):
+    if request.method == "POST":
+        list_id = request.POST.get('list_id')
+        b_list = BList.objects.get(id=list_id)
+        id_board = b_list.board.id
+        if b_list.board.owner == request.user:
+            card_name = request.POST.get('card_name')
+            Card.objects.create(
+                name=card_name,
+                b_list=b_list
+            )
+
+            return redirect('board_detail', pk=id_board)

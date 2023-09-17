@@ -26,11 +26,26 @@ body {
 <div class="container-fluid">
   <div class="row">
     {% for list in board.blist_set.all %}
-    <div class="col-2">
+    <div class="col-lg-2 col-md-4 col-sm-6 col-12">
       <div class="card text-bg-dark mb-3" style="max-width: 18rem;">
         <div class="card-header">{{list.name}}</div>
         <div class="card-body">
-          {% comment %} data body {% endcomment %}
+          <ul class="nav nav-pills flex-column mb-auto">
+            {% for card in list.card_set.all %}
+            <li class="nav-item">
+              <a href="#" class="nav-link text-white" aria-current="page">
+                {{card.name}}
+              </a>
+            </li>
+            {% endfor %}
+          </ul>
+          <hr>
+          <form action="{% url 'create_card' %}" method="post">
+            {% csrf_token %}
+            <input class="form-control" type="text" placeholder="list name" name="card_name">
+            <input  type="hidden" value="{{list.id}}" name="list_id">
+            <button type="submit" class="btn btn-primary mt-2 btn-sm">add a card</button>
+          </form>
         </div>
       </div>
     </div>
