@@ -2,5 +2,34 @@
 {% load static %}
 
 {% block content %}
-sadsa
+{% load crispy_forms_tags %}
+<div class="container">
+    {% include "board/parts/sidebar.html" %}
+
+
+
+
+    <!-- Modal create board -->
+    <div class="modal fade" id="createboard" tabindex="-1" aria-labelledby="createboardLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="createboardLabel">Create a board</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <form action="{% url 'create_board' %}" method="post">
+                {% csrf_token %}
+                {{form | crispy}}
+            </div> <!--end body -->
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Create</button>
+            </form>
+            </div>
+        </div>
+        </div>
+    </div>
+
+</div>  <!-- end container -->
 {% endblock content %}

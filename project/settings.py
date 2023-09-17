@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     # install
     'crispy_forms',
     'crispy_bootstrap5',
+    'colorfield',
     # my apps
     'accounts.apps.AccountsConfig',
     'pages.apps.PagesConfig',
