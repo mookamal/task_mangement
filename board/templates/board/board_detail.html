@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+<style>
+body {
+    background-color: {{board.bg_color}};
+}
+</style>
+{% endblock css %}
+
+{% block content %}
+<!-- start navbar2 -->
+<nav class="navbar">
+    <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1">board name : {{board.title}}</span>
+        <!-- Button trigger modal create list -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createlist">
+            create list
+        </button>
+    </div>
+</nav>
+<!-- end navbar2 -->
+
+<!-- start lists -->
+<div class="container-fluid">
+  <div class="row">
+    {% for list in board.blist_set.all %}
+    <div class="col-2">
+      <div class="card text-bg-dark mb-3" style="max-width: 18rem;">
+        <div class="card-header">{{list.name}}</div>
+        <div class="card-body">
+          {% comment %} data body {% endcomment %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<!-- end lists -->
+
+<!-- Modal  create list -->
+<div class="modal fade" id="createlist" tabindex="-1" aria-labelledby="createlistLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="createlistLabel">create list in board {{board.title}}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <form action="{% url 'create_list' %}" method="post">
+              {% csrf_token %}
+          <input class="form-control" type="text" placeholder="list name" name="list_name">
+          <input  type="hidden" value="{{board.id}}" name="board_id">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">create</button>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

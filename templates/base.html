@@ -15,17 +15,12 @@
 
     {% comment %} path login page {% endcomment %}
     {% url 'home' as home_path %}
-    {% url 'board_list' as boards %}
-
-
-
-
 
     {% comment %} start header {% endcomment %}
     
     {% if request.path == home_path %}
     {% include "parts/header.html" %}
-    {% elif request.path == boards %}
+    {% elif request.path_board %}
     {% include "board/parts/header.html" %}
     {% endif %}
     {% comment %} end header {% endcomment %}
