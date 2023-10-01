@@ -35,11 +35,16 @@
     {% endif %}
     {% comment %} end footer {% endcomment %}
 
-    {% comment %} js files {% endcomment %}
-    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+
+
+
+   
+   {% comment %} js files {% endcomment %}
     <script src="{% static 'jquery/jquery-3.7.1.min.js' %}"></script>
     <script src="{% static 'colorfield/jscolor/jscolor.js' %}"></script>
-
+    
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
     {% block js %}{% endblock js %}
   </body>
 </html>

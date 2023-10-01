@@ -7,6 +7,7 @@ body {
     background-color: {{board.bg_color}};
 }
 </style>
+<link rel="stylesheet" href="{% static 'css/board/board.css' %}">
 {% endblock css %}
 
 {% block content %}
@@ -26,30 +27,54 @@ body {
 <div class="container-fluid">
   <div class="row">
     {% for list in board.blist_set.all %}
-    <div class="col-lg-2 col-md-4 col-sm-6 col-12">
-      <div class="card text-bg-dark mb-3" style="max-width: 18rem;">
-        <div class="card-header">{{list.name}}</div>
-        <div class="card-body">
-          <ul class="nav nav-pills flex-column mb-auto">
-            {% for card in list.card_set.all %}
-            <li class="nav-item">
-              <a href="#" class="nav-link text-white" aria-current="page">
-                {{card.name}}
-              </a>
-            </li>
-            {% endfor %}
-          </ul>
-          <hr>
-          <form action="{% url 'create_card' %}" method="post">
-            {% csrf_token %}
-            <input class="form-control" type="text" placeholder="list name" name="card_name">
-            <input  type="hidden" value="{{list.id}}" name="list_id">
-            <button type="submit" class="btn btn-primary mt-2 btn-sm">add a card</button>
-          </form>
+    <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+      <div class="list p-2">
+              <!-- list header -->
+      <div class="list-header">
+        <!-- list title -->
+        <div class="list-header-title">
+          <h5>{{list.name}}</h5>
+        </div>
+        <!-- end list title  -->
+        <!-- list head extras -->
+        <div class="list-header-extras">
+          <div class="dropdown">
+            <a href="#" role="button" data-bs-toggle="dropdown"><i class="fa-solid fa-ellipsis" ></i></a>
+
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+
+          </div>
+          <!-- end list head  extras -->
         </div>
       </div>
+      <!-- end list header -->
+      <!-- cards -->
+      <div class="list-cards">
+        {% for card in list.card_set.all %}
+        <!-- start card -->
+        {% include "board/parts/card.html" %}
+        <!-- end card -->
+        {% endfor %}
+      </div>
+      <!-- end cards -->
+      <!-- start form add card -->
+      <form action="{% url 'create_card' %}" method="post">
+        <div class="input-group mb-3 mt-3">
+            {% csrf_token %}
+            <input type="hidden" value="{{list.id}}" name="list_id" />
+            <input type="text" class="form-control" name="card_name" placeholder="Enter a title for this card.." aria-label="" aria-describedby="button-addon2" />
+            <button class="btn btn-light" type="submit" id="button-addon2">add a card</button>
+        </div>
+      </form>
+      <!-- end form add card -->
+      </div>
+
     </div>
-    {% endfor %}
+    {% endfor %} 
   </div>
 </div>
 <!-- end lists -->
@@ -77,3 +102,5 @@ body {
   </div>
 </div>
 {% endblock content %}
+
+
