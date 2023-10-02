@@ -26,6 +26,7 @@ class BList(models.Model):
 
 class Card(models.Model):
     name = models.CharField(max_length=100)
+    desc = models.TextField(default="add description")
     b_list = models.ForeignKey(BList, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

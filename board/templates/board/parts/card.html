@@ -1,5 +1,5 @@
 {% load static %}
-<a href="#">
+<a href="#" data-bs-toggle="modal" data-bs-target="#open-id-{{card.id}}" >
     <div class="list-card">
       <div class="row">
 
@@ -14,6 +14,46 @@
         </div>
 
       </div> <!-- end row -->
-
+      {% comment %} start card elements {% endcomment %}
+      {% if card.desc != "" %}<i class="fa-solid fa-audio-description"></i>{% endif %}
+      {% comment %} end card elements {% endcomment %}
     </div>
   </a>
+
+
+<!-- Modal -->
+<div class="modal fade" id="open-id-{{card.id}}" tabindex="-1" aria-labelledby="open-id-{{card.id}}Label" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="open-id-{{card.id}}Label">{{card.name}}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-8">
+            <!-- start description -->
+            <div class="description">
+              <div class="d-flex">
+                <i class="fa-solid fa-audio-description"></i>
+                <h6 class="ms-1">Description</h6>
+              </div>
+            </div>
+
+            
+
+            <div class="mb-3">
+              <form id="update-desc-form" method="post">
+                <textarea class="form-control" id="change-desc"  name="change-desc" rows="3">{{card.desc}}</textarea>
+                <input type="hidden" name="id-card" value="{{card.id}}">
+                <button type="submit" class="btn btn-dark mt-1">Save</button>
+              </form>
+            </div>
+            <!-- end description -->
+          </div>
+          <div class="col-4"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -4,7 +4,9 @@ from django.shortcuts import render , redirect , get_object_or_404
 from .models import Board , BList , Card
 from django.views.generic import ListView , DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import BoardForm 
+from .forms import BoardForm
+from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 class BoardsListView(LoginRequiredMixin,ListView):
@@ -17,7 +19,7 @@ class BoardsListView(LoginRequiredMixin,ListView):
         context["form"] = BoardForm()
         return context
     
-    
+@login_required
 def create_board(request):
     if request.method == "POST":
         form = BoardForm(request.POST)
@@ -37,7 +39,7 @@ class BoardDetail(LoginRequiredMixin,DetailView):
                 return HttpResponse("this board not found")
         return super().get(request, *args, **kwargs)
     
-
+@login_required
 def create_list(request):
     if request.method == "POST":
         board_id_value = request.POST.get('board_id')
@@ -51,6 +53,7 @@ def create_list(request):
         
         return redirect('board_detail', pk=board_id_value)
 
+@login_required
 def create_card(request):
     if request.method == "POST":
         list_id = request.POST.get('list_id')
@@ -64,3 +67,15 @@ def create_card(request):
             )
 
             return redirect('board_detail', pk=id_board)
+
+@login_required
+def change_desc_in_card(request):
+    if request.method == 'POST':
+        desc = request.POST.get("change-desc")
+        id_card = request.POST.get("id-card")
+        get_card = Card.objects.get(id=id_card)
+        if get_card:
+            get_card.desc = desc
+            get_card.save()
+            return JsonResponse({'success': 'Description changed successfully!'})        
+    return JsonResponse({'error': 'Invalid request'})

@@ -4,6 +4,7 @@
     --text-color: #2f2634;
     --accent-color:#e8dcce;
 }
+
 body {
     background-color: var(--background-color);
 }

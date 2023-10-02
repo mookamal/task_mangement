@@ -103,4 +103,11 @@ body {
 </div>
 {% endblock content %}
 
+{% block js %}
+<script>
+  const changeDescInCard = "{% url 'change_desc_in_card' %}"
+</script>
+<script src="{% static 'js/board/board.js' %}"></script>
+{% endblock js %}
+
 
