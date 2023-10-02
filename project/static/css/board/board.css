@@ -43,3 +43,31 @@ a, a:hover {
     
 }
 /* end card */
+/* start card plugin */
+
+.card-item .plugin  {
+    background-color: var(--ds-background-neutral,#091e420f);
+    border: none;
+    border-radius: 3px;
+    box-shadow: none;
+    box-sizing: border-box;
+    color: var(--ds-text,#172b4d);
+    cursor: pointer;
+    display: block;
+    font-weight: 500;
+    height: 32px;
+    margin-top: 8px;
+    max-width: 300px;
+    overflow: hidden;
+    padding: 6px 12px;
+    position: relative;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    transition-duration: 85ms;
+    transition-property: background-color,border-color,box-shadow;
+    transition-timing-function: ease;
+    -webkit-user-select: none;
+    user-select: none;
+    white-space: nowrap;
+}
+/* end card plugin */

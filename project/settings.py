@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'pages.apps.PagesConfig',
     'board.apps.BoardConfig',
+    'plugin.apps.PluginConfig',
+    
 ]
 
 MIDDLEWARE = [

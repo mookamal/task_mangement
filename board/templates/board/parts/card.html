@@ -23,7 +23,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="open-id-{{card.id}}" tabindex="-1" aria-labelledby="open-id-{{card.id}}Label" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog modal-lg modal-fullscreen-md-down modal-fullscreen-lg-down">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="open-id-{{card.id}}Label">{{card.name}}</h1>
@@ -50,8 +50,42 @@
               </form>
             </div>
             <!-- end description -->
+            <!-- here show checklist and items -->
+            <div id="checklist-area-{{card.id}}">
+              {% for checklist in card.checklist_set.all %}
+              {% include "board/parts/card_item/card_checklist.html" %}
+              {% endfor %}
+            </div>
+            <!-- end here show checklist and items -->
           </div>
-          <div class="col-4"></div>
+          <div class="col-4 p-3">
+            <h5>add to card</h5>
+            <div class="card-item">
+
+              <!-- start add checklist -->
+              <div class="plugin" data-id-card="{{card.id}}"><i class="fa-solid fa-list-check"></i> Checklist</div>
+
+              <div class="toast-container position-static">
+                  <div id="checklistformshow-{{card.id}}" data-bs-autohide="false" class="toast" role="alert"  aria-live="assertive" aria-atomic="true">
+                      <div class="toast-header">
+                          <strong class="me-auto">Add checklist</strong>
+                          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                      </div>
+                      <div class="toast-body">
+                        <form  method="post" class="formchecklist">
+                          <input type="hidden" name="id-card" value="{{card.id}}">
+                          <div class="input-group mb-3">
+                            <input type="text" class="form-control" name="title-checklist" placeholder="checklist" aria-describedby="button-addon2">
+                            <button class="btn btn-dark" type="submit" id="button-addon2">add</button>
+                          </div>
+                        </form>
+                      </div>
+                  </div>
+              </div>
+              <!-- end add checklist -->
+            </div>
+            <!-- end card-item -->
+          </div>
         </div>
       </div>
     </div>
