@@ -11,5 +11,6 @@ class CheckList(models.Model):
         return str(f"{self.title} : to card : {self.card.name}")
 
 class ItemCheckList(models.Model):
+    name = models.CharField(max_length=50)
     status = models.BooleanField(default=False)
     checklist = models.ForeignKey(CheckList, on_delete=models.CASCADE)

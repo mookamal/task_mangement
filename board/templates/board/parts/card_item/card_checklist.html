@@ -1,5 +1,5 @@
 {% load static %}
-<div class="show-checklist">
+<div class="show-checklist" id="box-checklist-{{checklist.id}}">
     <div class="row header-checklist">
         <div class="col-1">
             <i class="fa-solid fa-list-check"></i>
@@ -11,19 +11,23 @@
             <button type="button" class="btn btn-light btn-ms">Delete</button>
         </div>
     </div>
-    <!-- start progress -->
-    <div class="p-3">
-        <div class="progress">
-            <div class="progress-bar bg-info" role="progressbar" aria-label="Info example" style="width: 0%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-        </div>
-    </div>
     <!-- start items list -->
-    <div class="list-form-check">
-        {% comment %} here form-check {% endcomment %}
+    <div class="p-3" id="list-form-check-{{checklist.id}}">
+        {% for item in checklist.itemchecklist_set.all %}
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="{{item.id}}" id="flexCheckDefault" {% if item.status %}checked{% endif %}>
+            <label class="form-check-label" for="flexCheckDefault">
+              {{item.name}}
+            </label>
+          </div>
+        {% endfor %}
     </div>
     <!-- start add item to checklist -->
-    <div class="input-group mb-3 p-5">
-        <input type="text" class="form-control" placeholder="add an item" aria-describedby="button-addon2" />
-        <button class="btn btn-light" type="button" id="button-addon2">Add</button>
-    </div>
+    <form  method="post" class="form-item-checklist">
+        <div class="input-group mb-3 p-2">
+            <input type="hidden" name="id-checklist" value="{{checklist.id}}">
+            <input type="text" class="form-control" name="item-checklist-name" placeholder="add an item" aria-describedby="button-addon2" />
+            <button class="btn btn-light" type="submit" id="button-addon2">Add</button>
+        </div>
+    </form>
 </div>

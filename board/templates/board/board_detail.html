@@ -107,20 +107,8 @@ body {
 <script>
   const changeDescInCard = "{% url 'change_desc_in_card' %}"
   const addChecklist = "{% url 'add_checklist' %}"
-
-  
-  
-  {% comment %} const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
-  const popoverList = [...popoverTriggerList].map(popoverTriggerEl => {
-    return new bootstrap.Popover(popoverTriggerEl, {
-      html: true,
-      sanitize: false, 
-    });
-  }); {% endcomment %}
-  
-
-
-  
+  const addItemToChecklist = "{% url 'add_item_to_checklist' %}"
+  const changeStatusItemChecklist = "{% url 'change_status_item_checklist' %}"
 </script>
 <script src="{% static 'js/board/board.js' %}"></script>
 {% endblock js %}
